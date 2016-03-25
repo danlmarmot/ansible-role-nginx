@@ -1,0 +1,34 @@
+---
+
+- name: Add static directory
+  file:
+    path: "{{ nginx_static_site.path }}"
+    state: directory
+
+- name: Add static site index.htm file
+  template:
+    src: static_site/index.html.j2
+    dest: "{{ nginx_static_site.path }}/index.html"
+    owner: root
+    group: root
+    mode: 644
+  register: static_index
+
+- name: Add static site nginx config file
+  template:
+    src: static_site/static.conf.j2
+    dest: /etc/nginx/conf.d/static.conf
+    owner: root
+    group: root
+    mode: 644
+  register: static_config
+
+- name: Reload ngnix when site has changed
+  service:
+    name: nginx
+    state: reloaded
+  when: static_index.changed or static_config.changed
+
+- name: Verify static site
+  shell: curl -sS 127.0.0.1:{{ nginx_static_site.port }}
+  changed_when: False

@@ -1,0 +1,3 @@
+# Minimal meta/main.yml required for a role
+---
+dependencies: []

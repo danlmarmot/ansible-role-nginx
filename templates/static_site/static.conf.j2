@@ -1,0 +1,7 @@
+server {
+	listen {{ nginx_static_site.port }};
+	location / {
+		root {{ nginx_static_site.path }};
+		index index.html index.htm;
+	}
+}

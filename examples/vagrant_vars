@@ -1,0 +1,7 @@
+---
+# Overrides for Vagrant
+
+nginx_static_site:
+  install: True
+  port: 80
+  path: /opt/static_site

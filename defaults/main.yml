@@ -1,0 +1,20 @@
+---
+role_name: nginx
+
+nginx_pkg_name: nginx
+nginx_pkg_version: 1.9.3
+
+local_apt_repo: /usr/local/deb-repo
+
+nginx_remove_default_site: True
+
+nginx_cfg:
+  user: www-data
+  worker_processes: 4
+  pid: /run/nginx.pid
+  worker_connections: 768
+
+nginx_static_site:
+  install: False
+  port: 80
+  path: /opt/static_site

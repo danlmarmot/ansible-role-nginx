@@ -1,0 +1,6 @@
+---
+ - name: Restart nginx handler
+   service:
+     name: nginx
+     state: restarted
+

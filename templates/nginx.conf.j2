@@ -1,0 +1,17 @@
+user {{  nginx_cfg.user }};
+worker_processes {{  nginx_cfg.worker_processes }};
+pid {{  nginx_cfg.pid }};
+
+events {
+    {{  nginx_cfg.worker_connections }};
+}
+
+http {
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+
+	include /etc/nginx/conf.d/*.conf;
+}
